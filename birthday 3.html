@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Nimansh ji!</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Dancing+Script:wght@600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg1: #0f1022;
+--bg2: #24132b;
+--accent1: #ff6b88;
+--accent2: #ffd166;
+--accent3: #7afcff;
+--glass: rgba(255,255,255,0.06);
+--neon: rgba(255,107,136,0.18);
+}
+
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(160deg,var(--bg1) 0%, var(--bg2) 80%);color:#fff;overflow:hidden;}
+
+/* Layout */
+.container{
+width:100%;
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:flex-start;
+padding:28px 18px;
+box-sizing:border-box;
+}
+
+/* Header / Neon title */
+.header {
+margin-top:10px;
+text-align:center;
+pointer-events:none;
+}
+.title-wrap{
+display:inline-block;
+padding:18px 28px;
+border-radius:18px;
+background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+box-shadow: 0 6px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+backdrop-filter: blur(6px);
+transform-style:preserve-3d;
+}
+.title {
+display:flex;
+gap:10px;
+align-items:center;
+justify-content:center;
+font-weight:800;
+font-family: 'Montserrat', sans-serif;
+letter-spacing:1px;
+color: white;
+text-transform:none;
+font-size:clamp(26px,4vw,44px);
+transform: translateZ(0);
+}
+.title .neon-text{
+background: linear-gradient(90deg, #ff9a9e, #ff6b88, #ff3366);
+-webkit-background-clip: text;
+color: transparent;
+text-shadow:
+0 0 12px rgba(255, 107, 136,0.25),
+0 6px 30px rgba(255, 107, 136,0.08);
+padding:4px 8px;
+border-radius:8px;
+position:relative;
+z-index:2;
+}
+
+/* subtitle */
+.sub{font-size:13px;color:rgba(255,255,255,0.6);margin-top:6px}
+
+/* Stage area */
+.stage{
+width:100%;
+max-width:1100px;
+margin-top:28px;
+display:grid;
+grid-template-columns: 1fr 420px;
+gap:24px;
+align-items:start;
+padding:18px;
+box-sizing:border-box;
+}
+
+/* Left: scene */
+.scene{
+min-height:380px;
+background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+border-radius:18px;
+padding:20px;
+position:relative;
+overflow:hidden;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Right: wish card */
+.wish{
+background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+border-radius:16px;
+padding:20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+position:relative;
+display:flex;
+flex-direction:column;
+gap:16px;
+}
+
+/* Photo frame */
+.photo-frame {
+width: 100%;
+height: 140px;
+border-radius: 14px;
+overflow: hidden;
+position: relative;
+background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+border: 1px solid rgba(255,255,255,0.06);
+box-shadow: 0 8px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.02);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.photo-placeholder {
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 10px;
+color: rgba(255,255,255,0.7);
+text-align: center;
+padding: 10px;
+}
+
+.photo-icon {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: linear-gradient(135deg, rgba(255,107,136,0.15), rgba(255,209,102,0.15));
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 22px;
+}
+
+.photo-placeholder p {
+margin: 0;
+font-size: 14px;
+font-weight: 500;
+}
+
+.photo-credit {
+font-size: 11px;
+color: rgba(255,255,255,0.4);
+margin-top: 4px;
+}
+
+/* Photo overlay effect */
+.photo-frame::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: radial-gradient(circle at 30% 30%, rgba(255,107,136,0.1) 0%, transparent 70%);
+z-index: 1;
+pointer-events: none;
+}
+
+.photo-frame::after {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.1));
+z-index: 1;
+pointer-events: none;
+}
+
+/* Balloons */
+.balloon{
+position:absolute;
+bottom:-120px;
+width:70px;height:95px;
+border-radius:60% 60% 55% 55%/70% 70% 30% 30%;
+opacity:0.95;
+display:flex;
+align-items:center;
+justify-content:center;
+transform-origin:center bottom;
+box-shadow: 0 10px 22px rgba(0,0,0,0.45), inset 0 -8px 18px rgba(255,255,255,0.05);
+}
+.balloon::after{
+content:'';
+position:absolute;
+width:2px;height:46px;bottom:-36px;left:50%;
+background:linear-gradient(#fff2,#fff0);
+transform:translateX(-50%);
+border-radius:2px;
+opacity:0.9;
+}
+.balloon.small{width:46px;height:66px}
+.balloon1{left:6%; background:linear-gradient(180deg,#ff6b88,#ff3366);animation: float1 9s infinite ease-in-out;}
+.balloon2{left:18%; background:linear-gradient(180deg,#ffd166,#ffb347);animation: float2 8.2s infinite ease-in-out;transform-origin:center bottom;}
+.balloon3{left:32%; background:linear-gradient(180deg,#7afcff,#3fbff1);animation: float1 10s infinite ease-in-out;}
+.balloon4{left:82%; background:linear-gradient(180deg,#b39ddb,#7e57c2);animation: float2 9.6s infinite ease-in-out}
+.balloon5{left:64%; background:linear-gradient(180deg,#ffb0d9,#ff6b88);animation: float3 11s infinite ease-in-out}
+
+@keyframes float1 {0%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-220px) rotate(6deg)}100%{transform:translateY(0) rotate(-6deg)}}
+@keyframes float2 {0%{transform:translateY(0) rotate(6deg)}50%{transform:translateY(-200px) rotate(-4deg)}100%{transform:translateY(0) rotate(6deg)}}
+@keyframes float3 {0%{transform:translateY(0)}50%{transform:translateY(-240px)}100%{transform:translateY(0)}}
+
+/* Cake card center */
+.cake-box{
+width:100%;
+height:320px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+perspective:1200px;
+}
+.cake{
+width:280px;
+height:220px;
+transform-style:preserve-3d;
+transition: transform 400ms cubic-bezier(.2,.9,.3,1), filter 300ms;
+transform-origin:center bottom;
+cursor:grab;
+}
+.cake:hover{ transform: rotateX(8deg) translateY(-6px) scale(1.02); filter:drop-shadow(0 30px 40px rgba(0,0,0,0.5));}
+
+/* Cake visual (CSS layers) */
+.cake .layer{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+width:260px;
+height:60px;
+border-radius:18px;
+box-shadow: inset 0 -8px 18px rgba(0,0,0,0.2);
+}
+.cake .layer.bottom{background:linear-gradient(180deg,#6b3b1f,#4a2a14);bottom:0;height:80px;transform:translateX(-50%) translateZ(-12px)}
+.cake .layer.middle{background:linear-gradient(180deg,#fff7f7,#ffecec);bottom:48px;height:70px}
+.cake .frost{
+position:absolute; left:50%; transform:translateX(-50%); bottom:96px; width:220px; height:18px; border-radius:10px; background:linear-gradient(90deg,#ff9ab3,#ffd6d6);
+box-shadow: 0 4px 14px rgba(255, 130, 150, 0.12);
+}
+.candle{
+position:absolute; left:50%; transform:translateX(-50%); bottom:110px; width:10px; height:50px; background:linear-gradient(180deg,#ffd166,#ffb347); border-radius:4px; box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+.flame{
+position:absolute; left:50%; transform:translate(-50%,-100%); top:-10px; width:18px; height:26px; border-radius:50% 50% 60% 60%; background: radial-gradient(circle at 45% 30%, #fff9, #ffd166 20%, #ff6b6b 60%); filter:blur(0.4px);
+animation: flame 800ms infinite alternate;
+}
+@keyframes flame{from{transform:translate(-50%,-100%) scale(0.92)} to{transform:translate(-50%,-100%) scale(1.08)}}
+
+/* Knife */
+.knife{
+position:absolute;
+width:120px;
+left:50%;
+transform:translateX(-50%) rotate(-20deg);
+top:16px;
+z-index:50;
+cursor:grab;
+transition: transform 160ms;
+user-select:none;
+}
+.knife:active{cursor:grabbing}
+.knife .blade{fill:linear-gradient(#fff,#ccc);stroke:#e6e6e6;stroke-width:1}
+.knife .handle{fill:#222;opacity:0.95}
+
+/* cut line & animation */
+.cut-line{
+position:absolute;
+left:50%;
+top:45%;
+width:0;
+height:3px;
+background:linear-gradient(90deg,#fff,#ffd166);
+transform:translateX(-50%) rotate(0deg);
+border-radius:3px;
+box-shadow:0 0 12px rgba(255,200,120,0.35);
+transition: width 600ms cubic-bezier(.2,.9,.3,1);
+z-index:25;
+}
+
+/* Typing wish */
+.typing{
+width:100%;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+gap:10px;
+}
+.typing h2{margin:0;font-family:'Dancing Script',cursive;color:var(--accent2);font-size:26px;text-shadow:0 6px 20px rgba(255,209,143,0.08)}
+.typing .text{
+font-size:15px;
+color:rgba(255,255,255,0.92);
+background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+min-height:68px;box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+font-weight:500;
+}
+
+/* footer controls */
+.controls{
+display:flex;
+gap:10px;
+margin-top:14px;
+align-items:center;
+}
+.btn{
+background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+border:1px solid rgba(255,255,255,0.06);
+color:#fff;padding:8px 12px;border-radius:10px;
+display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;cursor:pointer;
+box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+.btn:active{transform:translateY(1px)}
+.play-dot{width:10px;height:10px;border-radius:50%;background:var(--accent1);box-shadow:0 6px 18px rgba(255,107,136,0.18)}
+
+/* sparkles */
+.sparkle{
+position:absolute;
+pointer-events:none;
+border-radius:50%;
+filter:blur(0.4px);
+opacity:0.9;
+z-index:60;
+mix-blend-mode:screen;
+}
+
+/* confetti canvas (full screen) */
+#confettiCanvas{
+position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:1000;
+}
+
+/* small responsive tweaks */
+@media (max-width:980px){
+.stage{grid-template-columns: 1fr; padding-bottom:60px}
+.cake-box{height:260px}
+}
+@media (max-width:600px){
+.photo-frame {height: 120px;}
+.photo-icon {width: 40px; height: 40px; font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+<div class="header" aria-hidden="false">
+<div class="title-wrap">
+<div class="title">
+<div class="neon-text">Happy Birthday</div>
+<div style="font-size:0.8em;color:rgba(255,255,255,0.8);margin-left:6px">Nimansh ji!</div>
+</div>
+<div class="sub">Wishing you joy, health and countless smiles 🎈</div>
+</div>
+</div>
+
+<div class="stage" role="main">
+<!-- LEFT: interactive scene -->
+<div class="scene" id="scene">
+<!-- balloons -->
+<div class="balloon balloon1"></div>
+<div class="balloon balloon2"></div>
+<div class="balloon balloon3"></div>
+<div class="balloon balloon4 small"></div>
+<div class="balloon balloon5 small"></div>
+
+<!-- Cake area -->
+<div class="cake-box" id="cakeBox" aria-hidden="false">
+<!-- Knife (SVG) -->
+<svg class="knife" id="knife" viewBox="0 0 240 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+<linearGradient id="bladeGrad" x1="0" x2="1">
+<stop offset="0" stop-color="#fff"/>
+<stop offset="1" stop-color="#ddd"/>
+</linearGradient>
+</defs>
+<g transform="translate(8,4)">
+<path class="blade" d="M6 12 C60 4 140 4 200 28 L210 34 L200 44 C150 62 70 64 12 52 Z" fill="url(#bladeGrad)" stroke="#e6e6e6" stroke-width="1.2"/>
+<rect class="handle" x="0" y="40" width="40" height="22" rx="6" fill="#2a2a2a"/>
+<circle cx="10" cy="51" r="3" fill="#8b7a7a"/>
+<circle cx="28" cy="51" r="3" fill="#8b7a7a"/>
+</g>
+</svg>
+
+<!-- cut visual -->
+<div class="cut-line" id="cutLine"></div>
+
+<!-- Cake (CSS layers) -->
+<div class="cake" id="cake" role="img" aria-label="Birthday cake">
+<div class="layer bottom"></div>
+<div class="layer middle"></div>
+<div class="frost"></div>
+<div class="candle" id="candle">
+<div class="flame"></div>
+</div>
+</div>
+</div>
+
+<!-- tip / hint -->
+<div style="position:absolute;left:18px;bottom:18px;color:rgba(255,255,255,0.62);font-size:13px;">
+Drag the knife down to cut the cake • Toggle music • Enjoy!
+</div>
+</div>
+
+<!-- RIGHT: wish card + controls + Photo -->
+<div class="wish" id="wish">
+<!-- Photo Frame -->
+<div class="photo-frame">
+<div class="photo-placeholder">
+<div class="photo-icon">🎂</div>
+<p>Add your special birthday photo here!</p>
+<div class="photo-credit">Celebrating Nimansh ji</div>
+</div>
+</div>
+
+<div class="typing">
+<h2>Mine Warm Wishes</h2>
+<div class="text" id="wishText" aria-live="polite"></div>
+</div>
+
+<div style="margin-top:12px;display:flex;flex-direction:column;gap:10px">
+<div class="controls">
+<button class="btn" id="bgPlay">
+<span id="bgIcon">▶</span> <span style="opacity:0.9">Play Melody</span>
+</button>
+<button class="btn" id="replayBtn">🔁 Replay Cut</button>
+<div style="flex:1"></div>
+<div style="font-size:12px;color:rgba(255,255,255,0.6);">Have fun 🎉</div>
+</div>
+
+<div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+<div style="display:flex;gap:8px;align-items:center">
+<div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(90deg,#ff6b88,#ffd166)"></div>
+<div style="font-weight:600">Nimansh ji</div>
+<div style="color:rgba(255,255,255,0.6);font-size:13px;margin-left:6px">From: Your broz, Sushil</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Confetti canvas -->
+<canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+<script>
+/* --------- Utilities & Setup --------- */
+
+const knife = document.getElementById('knife');
+const cake = document.getElementById('cake');
+const cakeBox = document.getElementById('cakeBox');
+const cutLine = document.getElementById('cutLine');
+const wishText = document.getElementById('wishText');
+const bgPlay = document.getElementById('bgPlay');
+const bgIcon = document.getElementById('bgIcon');
+const replayBtn = document.getElementById('replayBtn');
+const confettiCanvas = document.getElementById('confettiCanvas');
+let cakeCut = false;
+
+/* Resize confetti canvas */
+function resizeCanvas(){ confettiCanvas.width = innerWidth; confettiCanvas.height = innerHeight; }
+resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+
+/* Typing wish content */
+const fullWish = `Dear Nimansh ji,
+
+On your special day, may every wish you whisper to the stars turn into a bright tomorrow .I truly enjoy our morning walk conversations. You’re a wonderful person to talk with and I appreciate your kindness.Wishing you boundless joy, good health and success on US Visa and scholarship.
+
+Happy Birthday! 🎉
+ ...Your's Sushil`;
+
+function typeText(target, text, speed=22){
+target.textContent = '';
+let i=0;
+const t = setInterval(()=>{
+target.textContent += text[i] === '\n' ? '\n' : text[i];
+i++;
+if(i>=text.length) clearInterval(t);
+}, speed);
+}
+
+/* Start typing on load */
+setTimeout(()=> typeText(wishText, fullWish, 18), 700);
+
+/* Sparkles around cake */
+function spawnSparkles(){
+for(let i=0;i<10;i++){
+const s = document.createElement('div');
+const size = Math.random()*10 + 6;
+s.className = 'sparkle';
+s.style.width = s.style.height = size + 'px';
+s.style.left = (cakeBox.getBoundingClientRect().left + cake.getBoundingClientRect().width/2 + (Math.random()*220-110)) + 'px';
+s.style.top = (cakeBox.getBoundingClientRect().top + cake.getBoundingClientRect().height/2 + (Math.random()*80-40)) + 'px';
+s.style.background = `radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), rgba(255,255,255,0.42), transparent 70%)`;
+s.style.opacity = 0;
+document.body.appendChild(s);
+const life = 1200 + Math.random()*800;
+s.animate([
+{ opacity:0, transform: 'translateY(6px) scale(0.6)' },
+{ opacity:1, transform: 'translateY(-8px) scale(1.05)' },
+{ opacity:0, transform: 'translateY(-40px) scale(0.2)' }
+], {duration:life, easing:'cubic-bezier(.2,.9,.3,1)', fill:'forwards'});
+setTimeout(()=> s.remove(), life+60);
+}
+}
+
+/* Play a short chime using Web Audio API */
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function playChime(){
+const now = audioCtx.currentTime;
+const notes = [659.25, 783.99, 987.77, 1318.51]; // E5, G5, B5, E6
+notes.forEach((freq, i)=>{
+const o = audioCtx.createOscillator();
+const g = audioCtx.createGain();
+o.type = 'sine';
+o.frequency.value = freq;
+g.gain.value = 0;
+o.connect(g); g.connect(audioCtx.destination);
+o.start(now + i*0.08);
+g.gain.linearRampToValueAtTime(0.12, now + i*0.08 + 0.01);
+g.gain.exponentialRampToValueAtTime(0.001, now + i*0.08 + 0.48);
+o.stop(now + i*0.08 + 0.52);
+});
+}
+
+/* Background looping melody (simple) */
+let bgOscs = [];
+let bgPlaying = false;
+function toggleBackgroundMelody(){
+if(!bgPlaying){
+// resume audio ctx if suspended
+if(audioCtx.state === 'suspended') audioCtx.resume();
+// create a few oscillators to make a mellow pad
+const now = audioCtx.currentTime;
+const freqs = [220, 277.18, 329.63]; // A3, C#4, E4
+freqs.forEach((f,i)=>{
+const o = audioCtx.createOscillator();
+const g = audioCtx.createGain();
+o.type = 'sine';
+o.frequency.value = f;
+g.gain.value = 0.0001;
+o.connect(g); g.connect(audioCtx.destination);
+o.start(now);
+// ramp up
+g.gain.linearRampToValueAtTime(0.03, now+0.6 + i*0.15);
+bgOscs.push({o,g});
+});
+bgPlaying = true;
+bgIcon.textContent = '⏸';
+} else {
+// stop oscillators
+bgOscs.forEach(({o,g})=>{
+try{
+g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
+o.stop(audioCtx.currentTime + 0.52);
+}catch(e){}
+});
+bgOscs = [];
+bgPlaying = false;
+bgIcon.textContent = '▶';
+}
+}
+
+/* Confetti particle system on canvas */
+function confettiBurst(count = 120){
+const ctx = confettiCanvas.getContext('2d');
+const W = confettiCanvas.width, H = confettiCanvas.height;
+const colors = ['#ff6b88','#ffd166','#7afcff','#b39ddb','#ffb0d9','#ff8e72','#ffd1a9'];
+const particles = [];
+for(let i=0;i<count;i++){
+particles.push({
+x: Math.random()*W,
+y: -10,
+r: 6 + Math.random()*8,
+color: colors[Math.floor(Math.random()*colors.length)],
+vx: (Math.random()-0.5)*8,
+vy: 2 + Math.random()*6,
+rot: Math.random()*360,
+vr: (Math.random()-0.5)*12
+});
+}
+let t0 = null;
+function draw(ts){
+if(!t0) t0 = ts;
+const dt = (ts - t0)/1000;
+t0 = ts;
+ctx.clearRect(0,0,W,H);
+for(let p of particles){
+p.x += p.vx;
+p.y += p.vy;
+p.vy += 0.12; // gravity
+p.rot += p.vr;
+ctx.save();
+ctx.translate(p.x, p.y);
+ctx.rotate(p.rot * Math.PI/180);
+ctx.fillStyle = p.color;
+ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r);
+ctx.restore();
+}
+// remove off-screen
+for(let i=particles.length-1;i>=0;i--){
+if(particles[i].y > H + 40) particles.splice(i,1);
+}
+if(particles.length) requestAnimationFrame(draw);
+else ctx.clearRect(0,0,W,H);
+}
+requestAnimationFrame(draw);
+}
+
+/* cake cut animation + behaviours */
+function doCakeCut(){
+if(cakeCut) return;
+cakeCut = true;
+// animate cut line
+cutLine.style.width = '220px';
+cutLine.style.transform = 'translateX(-50%) rotate(-8deg)';
+// small shake & slice animation using transforms
+cake.style.transition = 'transform 420ms cubic-bezier(.2,.9,.3,1), opacity 400ms';
+cake.style.transform = 'translateY(-4px) rotateX(4deg) scale(1.01)';
+spawnSparkles();
+playChime();
+setTimeout(()=>{
+// create a slice element to animate out
+const slice = document.createElement('div');
+slice.style.position='absolute';
+slice.style.width='120px';
+slice.style.height='160px';
+slice.style.left=(cake.getBoundingClientRect().left + cake.getBoundingClientRect().width/2 + 20) + 'px';
+slice.style.top=(cake.getBoundingClientRect().top + 30) + 'px';
+slice.style.background='linear-gradient(180deg,#fff7f7,#ffecec)';
+slice.style.borderRadius='12px';
+slice.style.zIndex=40;
+slice.style.boxShadow='0 20px 40px rgba(0,0,0,0.45)';
+document.body.appendChild(slice);
+slice.animate([
+{ transform: 'translateY(0) rotate(0deg)'},
+{ transform: 'translateY(-30px) rotate(-8deg)'},
+{ transform: 'translateY(180px) rotate(30deg)', opacity:0}
+], {duration:1600, easing:'cubic-bezier(.18,.9,.3,1)', fill:'forwards'});
+setTimeout(()=> slice.remove(), 1700);
+confettiBurst(160);
+// show a small toast message
+showFloatingMsg("Cake cut! Happy Birthday Nimansh ji! 🎉");
+}, 420);
+
+// stop candle flame (tiny fade)
+document.querySelector('.flame').style.opacity = '0.12';
+}
+
+/* Floating toast for quick feedback */
+function showFloatingMsg(txt){
+const el = document.createElement('div');
+el.textContent = txt;
+el.style.position='fixed';
+el.style.left='50%';
+el.style.top='18%';
+el.style.transform='translateX(-50%)';
+el.style.background='linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03))';
+el.style.padding='12px 18px';
+el.style.borderRadius='12px';
+el.style.boxShadow='0 12px 40px rgba(0,0,0,0.45)';
+el.style.zIndex = 1200;
+el.style.fontWeight = 700;
+el.style.color = '#fff';
+document.body.appendChild(el);
+el.animate([{opacity:0, transform:'translate(-50%, -10px)'},{opacity:1, transform:'translate(-50%,0)'}],{duration:300,easing:'ease-out',fill:'forwards'});
+setTimeout(()=> {
+el.animate([{opacity:1},{opacity:0}],{duration:400,fill:'forwards'});
+setTimeout(()=> el.remove(),420);
+}, 2200);
+}
+
+/* Knife drag logic (pointer events) */
+let dragging = false;
+let dragOffset = {x:0,y:0};
+
+knife.addEventListener('pointerdown', (ev)=>{
+ev.preventDefault();
+dragging = true;
+knife.setPointerCapture(ev.pointerId);
+knife.style.transition = 'none';
+const rect = knife.getBoundingClientRect();
+dragOffset.x = ev.clientX - rect.left;
+dragOffset.y = ev.clientY - rect.top;
+});
+
+window.addEventListener('pointermove', (ev)=>{
+if(!dragging || cakeCut) return;
+const box = cakeBox.getBoundingClientRect();
+const kW = knife.getBoundingClientRect().width;
+let x = ev.clientX - box.left - dragOffset.x;
+let y = ev.clientY - box.top - dragOffset.y;
+// constrain within cakeBox area
+x = Math.max(-40, Math.min(box.width - kW + 40, x));
+y = Math.max(-40, Math.min(box.height - kW + 40, y));
+knife.style.left = (box.left + x) + 'px';
+knife.style.top = (box.top + y) + 'px';
+// rotate relative to vertical movement
+const angle = Math.max(-45, Math.min(15, (ev.movementX - ev.movementY)/3 ));
+knife.style.transform = `translateX(-50%) rotate(${angle}deg)`;
+// If knife tip goes below certain threshold relative to cake -> cut
+const knifeRect = knife.getBoundingClientRect();
+const cakeRect = cake.getBoundingClientRect();
+const tipY = knifeRect.top + (knifeRect.height*0.78);
+const tipX = knifeRect.left + (knifeRect.width*0.88);
+// if tip inside cake bounds and near bottom of cake
+if(tipX > cakeRect.left + 20 && tipX < cakeRect.right - 20 && tipY > cakeRect.top + cakeRect.height*0.45){
+doCakeCut();
+}
+});
+
+window.addEventListener('pointerup', (ev)=>{
+if(!dragging) return;
+dragging = false;
+try{knife.releasePointerCapture(ev.pointerId)}catch(e){}
+knife.style.transition = 'transform 180ms, top 220ms, left 220ms';
+// return knife to top center of cakeBox
+const box = cakeBox.getBoundingClientRect();
+knife.style.left = (box.left + box.width/2 - knife.getBoundingClientRect().width/2) + 'px';
+knife.style.top = (box.top + 6) + 'px';
+knife.style.transform = 'translateX(-50%) rotate(-20deg)';
+});
+
+/* initialize knife position */
+function resetKnifePos(){
+const box = cakeBox.getBoundingClientRect();
+knife.style.left = (box.left + box.width/2 - knife.getBoundingClientRect().width/2) + 'px';
+knife.style.top = (box.top + 6) + 'px';
+knife.style.transform = 'translateX(-50%) rotate(-20deg)';
+}
+setTimeout(resetKnifePos, 300);
+
+/* Button actions */
+bgPlay.addEventListener('click', ()=>{
+toggleBackgroundMelody();
+// ensure audio context resumed when user interacts (autoplay policies)
+if(audioCtx.state === 'suspended') audioCtx.resume();
+});
+
+replayBtn.addEventListener('click', ()=>{
+// allow multiple celebrations
+cakeCut = false;
+cutLine.style.width = '0';
+document.querySelector('.flame').style.opacity = '1';
+resetKnifePos();
+spawnSparkles();
+});
+
+/* small auto-intro sparkles occasionally */
+setInterval(spawnSparkles, 6000);
+
+/* ensure initial audioCtx resumed on first user gesture */
+window.addEventListener('pointerdown', function initAudioOnce(){
+if(audioCtx.state === 'suspended') audioCtx.resume();
+window.removeEventListener('pointerdown', initAudioOnce);
+});
+
+/* Accessibility: keyboard "cut" by pressing Enter when focused on knife */
+knife.setAttribute('tabindex','0');
+knife.addEventListener('keydown',(e)=>{
+if(e.key === 'Enter' || e.key === ' '){
+doCakeCut();
+}
+});
+
+/* Pre-position knife with CSS absolute coordinates relative to document, so initial reset works */
+setTimeout(()=> {
+// set initial absolute positioning
+const rect = knife.getBoundingClientRect();
+knife.style.position = 'absolute';
+knife.style.left = rect.left + 'px';
+knife.style.top = rect.top + 'px';
+knife.style.transform = 'translateX(-50%) rotate(-20deg)';
+}, 120);
+
+/* Confetti burst when page loads (celebratory) */
+setTimeout(()=> confettiBurst(28), 1400);
+
+/* Function to load a real photo - uncomment and add your image URL */
+function loadPhoto() {
+  const photoFrame = document.querySelector('.photo-placeholder');
+  photoFrame.innerHTML = '<img src="photo.jpeg" style="width:100%;height:100%;object-fit:cover;border-radius:12px;" alt="Birthday celebration photo">';
+}
+// Call this function when you have a photo URL
+loadPhoto();
+
+</script>
+</body>
+</html>
